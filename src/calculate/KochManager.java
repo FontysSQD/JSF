@@ -58,25 +58,22 @@ public class KochManager {
 
         TimeStamp ts = new TimeStamp();
         ts.setBegin();
-        ArrayList<Edge> edges2 = new ArrayList<>();
-        edges2.addAll(edges);
-        for(Edge e : edges2){
+        for(Edge e : edges){
             application.drawEdge(e);
         }
         ts.setEnd("Einde tekenen");
 
         application.setTextDraw(ts.toString());
-        //application.setTextNrEdges(Integer.toString(kochFractal.getNrOfEdges()));
     }
 
     private void checkThread(ArrayList<Edge> edge) {
         synchronized (edges) {
             count++;
-            if(count >= 3) {
-                application.requestDrawEdges();
-                count = 0;
-            }
             edges.addAll(edge);
+            if(count >= 3) {
+                count = 0;
+                application.requestDrawEdges();
+            }
         }
     }
 }

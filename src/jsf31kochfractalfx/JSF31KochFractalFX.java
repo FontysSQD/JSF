@@ -50,7 +50,8 @@ public class JSF31KochFractalFX extends Application {
     private Label labelCalcText;
     private Label labelDraw;
     private Label labelDrawText;
-    
+    private boolean running = false;
+
     // Koch panel and its size
     private Canvas kochPanel;
     private final int kpWidth = 500;
@@ -220,12 +221,14 @@ public class JSF31KochFractalFX extends Application {
             @Override
             public void run() {
                 kochManager.drawEdges();
+                running = false;
             }
         });
     }
     
     private void increaseLevelButtonActionPerformed(ActionEvent event) {
-        if (currentLevel < 12) {
+        if (currentLevel < 12 && running == false) {
+            running = true;
             // resetZoom();
             currentLevel++;
             labelLevel.setText("Level: " + currentLevel);
@@ -234,7 +237,8 @@ public class JSF31KochFractalFX extends Application {
     } 
     
     private void decreaseLevelButtonActionPerformed(ActionEvent event) {
-        if (currentLevel > 1) {
+        if (currentLevel > 1 && running == false) {
+            running = true;
             // resetZoom();
             currentLevel--;
             labelLevel.setText("Level: " + currentLevel);
