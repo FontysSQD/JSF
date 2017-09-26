@@ -24,15 +24,8 @@ public class KochManager {
         Thread t1 = new Thread(new ThreadManager(nxt) {
             @Override
             public void run() {
-                synchronized (edges) {
-                    generateLeftEdge();
-                    count++;
-                    if(count >= 3) {
-                        application.requestDrawEdges();
-                        count = 0;
-                    }
-                    edges.addAll(this.edge);
-                }
+                generateLeftEdge();
+                checkThread(this.edge);
             }
         });
         t1.start();
@@ -40,15 +33,8 @@ public class KochManager {
         Thread t2 = new Thread(new ThreadManager(nxt) {
             @Override
             public void run() {
-                synchronized (edges) {
-                    generateBottomEdge();
-                    count++;
-                    if(count >= 3) {
-                        application.requestDrawEdges();
-                        count = 0;
-                    }
-                    edges.addAll(this.edge);
-                }
+                generateBottomEdge();
+                checkThread(this.edge);
             }
         });
         t2.start();
@@ -56,15 +42,8 @@ public class KochManager {
         Thread t3 = new Thread(new ThreadManager(nxt) {
             @Override
             public void run() {
-                synchronized (edges) {
-                    generateRightEdge();
-                    count++;
-                    if(count >= 3) {
-                        application.requestDrawEdges();
-                        count = 0;
-                    }
-                    edges.addAll(this.edge);
-                }
+                generateRightEdge();
+                checkThread(this.edge);
             }
         });
         t3.start();
@@ -87,6 +66,17 @@ public class KochManager {
         ts.setEnd("Einde tekenen");
 
         application.setTextDraw(ts.toString());
-        // application.setTextNrEdges(Integer.toString(kochFractal.getNrOfEdges()));
+        //application.setTextNrEdges(Integer.toString(kochFractal.getNrOfEdges()));
+    }
+
+    private void checkThread(ArrayList<Edge> edge) {
+        synchronized (edges) {
+            count++;
+            if(count >= 3) {
+                application.requestDrawEdges();
+                count = 0;
+            }
+            edges.addAll(edge);
+        }
     }
 }
