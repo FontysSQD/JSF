@@ -41,6 +41,7 @@ public class ThreadManager implements Runnable, Observer {
         }
     }
 
+
     public void update(Observable o, Object arg) {
         edge.add((Edge)arg);
     }

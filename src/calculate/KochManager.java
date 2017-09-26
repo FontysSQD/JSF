@@ -70,7 +70,7 @@ public class KochManager {
         t3.start();
         ts.setEnd("Einde generate");
 
-       // application.setTextCalc(ts.toString());
+        application.setTextCalc(ts.toString());
     }
 
     public void drawEdges() {
@@ -79,7 +79,9 @@ public class KochManager {
 
         TimeStamp ts = new TimeStamp();
         ts.setBegin();
-        for(Edge e : edges){
+        ArrayList<Edge> edges2 = new ArrayList<>();
+        edges2.addAll(edges);
+        for(Edge e : edges2){
             application.drawEdge(e);
         }
         ts.setEnd("Einde tekenen");
