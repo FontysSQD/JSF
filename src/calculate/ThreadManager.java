@@ -24,19 +24,19 @@ public class ThreadManager implements Runnable, Observer {
     }
 
     public void generateLeftEdge(){
-        synchronized (kochFractal) {
+        synchronized (this) {
             kochFractal.generateLeftEdge();
         }
     }
 
     public void generateBottomEdge(){
-        synchronized (kochFractal) {
+        synchronized (this) {
             kochFractal.generateBottomEdge();
         }
     }
 
     public void generateRightEdge(){
-        synchronized (kochFractal) {
+        synchronized (this) {
             kochFractal.generateRightEdge();
         }
     }

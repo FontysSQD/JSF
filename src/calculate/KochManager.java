@@ -12,13 +12,14 @@ import java.util.Observer;
 public class KochManager {
     private JSF31KochFractalFX application;
     private ArrayList<Edge> edges = new ArrayList<>();
+    private ArrayList<Edge> calculatingEdges;
     private int count = 0;
     public KochManager(JSF31KochFractalFX application) {
         this.application = application;
     }
 
     public void changeLevel(int nxt) {
-        edges.clear();
+        calculatingEdges = new ArrayList<>();
         TimeStamp ts = new TimeStamp();
         ts.setBegin();
         Thread t1 = new Thread(new ThreadManager(nxt) {
@@ -67,10 +68,11 @@ public class KochManager {
     }
 
     private void checkThread(ArrayList<Edge> edge) {
-        synchronized (edges) {
+        synchronized (this) {
             count++;
-            edges.addAll(edge);
+            calculatingEdges.addAll(edge);
             if(count >= 3) {
+                edges = calculatingEdges;
                 count = 0;
                 application.requestDrawEdges();
             }
