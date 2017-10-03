@@ -12,6 +12,7 @@ import java.util.concurrent.Future;
 public class KochManager {
     private JSF31KochFractalFX application;
     private ArrayList<Edge> edges = new ArrayList<>();
+    private ArrayList<Edge> calculatingEdges;
     private ExecutorService pool = Executors.newFixedThreadPool(4);
 
     public KochManager(JSF31KochFractalFX application) {
@@ -20,6 +21,7 @@ public class KochManager {
 
     public void changeLevel(int nxt) {
         edges.clear();
+        calculatingEdges = new ArrayList<>();
         TimeStamp ts = new TimeStamp();
         ts.setBegin();
         Future<ArrayList<Edge>> leftEdges = pool.submit(new ThreadManager(nxt) {
