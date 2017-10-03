@@ -20,7 +20,6 @@ public class KochManager {
     }
 
     public void changeLevel(int nxt) {
-        edges.clear();
         calculatingEdges = new ArrayList<>();
         TimeStamp ts = new TimeStamp();
         ts.setBegin();
@@ -52,14 +51,15 @@ public class KochManager {
             @Override
             public void run() {
                 try {
-                    edges.addAll(leftEdges.get());
-                    edges.addAll(bottomEdges.get());
-                    edges.addAll(rightEdges.get());
+                    calculatingEdges.addAll(leftEdges.get());
+                    calculatingEdges.addAll(bottomEdges.get());
+                    calculatingEdges.addAll(rightEdges.get());
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (ExecutionException e) {
                     e.printStackTrace();
                 }
+                edges = calculatingEdges;
                 application.requestDrawEdges();
             }
         });
