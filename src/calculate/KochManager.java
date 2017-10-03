@@ -1,19 +1,20 @@
 package calculate;
 
-import javafx.application.Platform;
 import jsf31kochfractalfx.JSF31KochFractalFX;
 import timeutil.TimeStamp;
 
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class KochManager {
     private JSF31KochFractalFX application;
     private ArrayList<Edge> edges = new ArrayList<>();
     private ArrayList<Edge> calculatingEdges;
-    private int count = 0;
+    private ExecutorService pool = Executors.newFixedThreadPool(4);
+
     public KochManager(JSF31KochFractalFX application) {
         this.application = application;
     }
@@ -22,32 +23,47 @@ public class KochManager {
         calculatingEdges = new ArrayList<>();
         TimeStamp ts = new TimeStamp();
         ts.setBegin();
-        Thread t1 = new Thread(new ThreadManager(nxt) {
+        Future<ArrayList<Edge>> leftEdges = pool.submit(new ThreadManager(nxt) {
             @Override
-            public void run() {
+            public ArrayList<Edge> call() {
                 generateLeftEdge();
-                checkThread(this.edge);
+                return this.edge;
             }
         });
-        t1.start();
 
-        Thread t2 = new Thread(new ThreadManager(nxt) {
+        Future<ArrayList<Edge>> bottomEdges = pool.submit(new ThreadManager(nxt) {
             @Override
-            public void run() {
+            public ArrayList<Edge> call() {
                 generateBottomEdge();
-                checkThread(this.edge);
+                return this.edge;
             }
         });
-        t2.start();
 
-        Thread t3 = new Thread(new ThreadManager(nxt) {
+        Future<ArrayList<Edge>> rightEdges = pool.submit(new ThreadManager(nxt) {
+            @Override
+            public ArrayList<Edge> call() {
+                generateRightEdge();
+                return this.edge;
+            }
+        });
+
+        pool.execute(new Runnable() {
             @Override
             public void run() {
-                generateRightEdge();
-                checkThread(this.edge);
+                try {
+                    calculatingEdges.addAll(leftEdges.get());
+                    calculatingEdges.addAll(bottomEdges.get());
+                    calculatingEdges.addAll(rightEdges.get());
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+                edges = calculatingEdges;
+                application.requestDrawEdges();
             }
         });
-        t3.start();
+
         ts.setEnd("Einde generate");
 
         application.setTextCalc(ts.toString());
@@ -59,23 +75,11 @@ public class KochManager {
 
         TimeStamp ts = new TimeStamp();
         ts.setBegin();
-        for(Edge e : edges){
+        for (Edge e : edges) {
             application.drawEdge(e);
         }
         ts.setEnd("Einde tekenen");
 
         application.setTextDraw(ts.toString());
-    }
-
-    private void checkThread(ArrayList<Edge> edge) {
-        synchronized (this) {
-            count++;
-            calculatingEdges.addAll(edge);
-            if(count >= 3) {
-                edges = calculatingEdges;
-                count = 0;
-                application.requestDrawEdges();
-            }
-        }
     }
 }
