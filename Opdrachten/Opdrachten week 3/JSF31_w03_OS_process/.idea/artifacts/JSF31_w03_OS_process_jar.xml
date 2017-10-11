@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="JSF31_w03_OS_process:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/JSF31_w03_OS_process_jar</output-path>
+    <root id="archive" name="JSF31_w03_OS_process.jar">
+      <element id="module-output" name="JSF31_w03_OS_process" />
+    </root>
+  </artifact>
+</component>
