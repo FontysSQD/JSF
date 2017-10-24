@@ -14,20 +14,16 @@ public class Monitor {
     int writersActive;
     int writersWaiting;
     int readersActive;
-    int readersWaiting;
 
     public void enterReader() throws InterruptedException {
         monLock.lock();
         try {
-            while (writersActive > 0) {
-                readersWaiting++;
+            while (writersActive > 0 || writersWaiting > 0) {
                 okToRead.await();
-                readersWaiting--;
             }
             readersActive++;
         }
         catch (InterruptedException ex){
-            readersWaiting--;
             throw ex;
         }
         finally {
