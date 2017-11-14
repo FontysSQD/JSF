@@ -262,11 +262,11 @@ public class JSF31KochFractalFX extends Application {
             }
         });
     }
-    public void requestGeneratedDrawEdges(ArrayList<Edge> edges)  {
+    public void requestGeneratedDrawEdge(Edge edge)  {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                kochManager.drawGeneratedEdges(edges);
+                kochManager.drawGeneratedEdges(edge);
             }
         });
 }

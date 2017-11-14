@@ -13,7 +13,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class KochManager{
+public class KochManager {
     private JSF31KochFractalFX application;
     private ArrayList<Edge> edges = new ArrayList<>();
     private ArrayList<Edge> calculatingEdges;
@@ -28,17 +28,17 @@ public class KochManager{
 
     public void changeLevel(int nxt) {
         calculatingEdges = new ArrayList<>();
-        if(left != null){
+        if (left != null) {
             application.progressBarLeft.progressProperty().unbind();
             application.progressLeftEdges.textProperty().unbind();
             left.cancelTask();
         }
-        if(bottom != null){
+        if (bottom != null) {
             application.progressBarBottom.progressProperty().unbind();
             application.progressBottomEdges.textProperty().unbind();
             bottom.cancelTask();
         }
-        if(right != null){
+        if (right != null) {
             application.progressBarRight.progressProperty().unbind();
             application.progressRightEdges.textProperty().unbind();
             right.cancelTask();
@@ -94,7 +94,7 @@ public class KochManager{
                     System.out.println("Thread stopped");
                 } catch (ExecutionException e) {
                     System.out.println("Thread stopped");
-                } catch (CancellationException e){
+                } catch (CancellationException e) {
                     System.out.println("Thread stopped");
                 }
             }
@@ -121,18 +121,8 @@ public class KochManager{
         application.setTextDraw(ts.toString());
     }
 
-    public void drawGeneratedEdges(ArrayList<Edge> edges) {
-        ArrayList<Edge> edgesToDraw = new ArrayList<>(edges.size());
-        for (Edge ed: edges) {
-            edgesToDraw.add(ed.clone());
-        }
-        TimeStamp ts = new TimeStamp();
-        ts.setBegin();
-        for (Edge e : edgesToDraw) {
-            e.color = Color.WHITE;
-            application.drawEdge(e);
-        }
-        ts.setEnd("Einde Generatie tekenen");
-        application.setTextDraw(ts.toString());
+    public void drawGeneratedEdges(Edge e) {
+        e.color = Color.WHITE;
+        application.drawEdge(e);
     }
 }

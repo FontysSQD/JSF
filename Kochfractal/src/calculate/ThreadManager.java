@@ -50,7 +50,7 @@ public abstract class ThreadManager extends Task<ArrayList<Edge>> implements  Ob
         updateProgress(edge.size(), getNrOfEdges());
         updateMessage("Nr edges: " + edge.size());
         if(edge.size() > 3) {
-            application.requestGeneratedDrawEdges(edge);
+            application.requestGeneratedDrawEdge(((Edge) arg).clone());
         }
         try {
             Thread.sleep(5);
