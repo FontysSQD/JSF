@@ -7,6 +7,8 @@ package jsf31kochfractalfx;
 import calculate.*;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -15,12 +17,14 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.input.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.util.concurrent.ExecutionException;
+import java.util.ArrayList;
+import java.util.Optional;
 
 /**
  * @author Nico Kuijpers
@@ -39,6 +43,7 @@ public class JSF31KochFractalFX extends Application {
     // Koch manager
     // TO DO: Create class KochManager in package calculate
     private KochManager kochManager;
+    public ObservableList<Edge> edges;
 
     // Current level of Koch fractal
     private int currentLevel = 1;
@@ -51,7 +56,15 @@ public class JSF31KochFractalFX extends Application {
     private Label labelCalcText;
     private Label labelDraw;
     private Label labelDrawText;
-    private boolean running = false;
+    private Label progressLeft;
+    public Label progressLeftEdges;
+    private Label progressBottom;
+    public Label progressBottomEdges;
+    private Label progressRight;
+    public Label progressRightEdges;
+    public ProgressBar progressBarLeft;
+    public ProgressBar progressBarBottom;
+    public ProgressBar progressBarRight;
 
     // Koch panel and its size
     private Canvas kochPanel;
@@ -129,7 +142,33 @@ public class JSF31KochFractalFX extends Application {
                 fitFractalButtonActionPerformed(event);
             }
         });
-        grid.add(buttonFitFractal, 14, 6);
+        grid.add(buttonFitFractal, 8, 6);
+
+        // Labels to present progress
+        progressLeft = new Label("Progress left:");
+        progressLeftEdges = new Label();
+        grid.add(progressLeft, 0, 7);
+        grid.add(progressLeftEdges, 6, 7);
+
+        progressBottom = new Label("Progress bottom:");
+        progressBottomEdges = new Label("test123");
+        grid.add(progressBottom, 0, 8);
+        grid.add(progressBottomEdges, 6, 8);
+
+        progressRight = new Label("Progress right:");
+        progressRightEdges = new Label();
+        grid.add(progressRight, 0, 9);
+        grid.add(progressRightEdges, 6, 9);
+
+        // Progress bars to present progress
+        progressBarLeft = new ProgressBar();
+        grid.add(progressBarLeft, 5, 7);
+
+        progressBarBottom = new ProgressBar();
+        grid.add(progressBarBottom, 5, 8);
+
+        progressBarRight = new ProgressBar();
+        grid.add(progressBarRight, 5, 9);
 
         // Add mouse clicked event to Koch panel
         kochPanel.addEventHandler(MouseEvent.MOUSE_CLICKED,
@@ -164,7 +203,7 @@ public class JSF31KochFractalFX extends Application {
 
         // Create the scene and add the grid pane
         Group root = new Group();
-        Scene scene = new Scene(root, kpWidth + 50, kpHeight + 170);
+        Scene scene = new Scene(root, kpWidth + 50, kpHeight + 250);
         root.getChildren().add(grid);
 
         // Define title and assign the scene for main window
@@ -220,24 +259,22 @@ public class JSF31KochFractalFX extends Application {
             @Override
             public void run() {
                 kochManager.drawEdges();
-                running = false;
             }
         });
     }
 
     private void increaseLevelButtonActionPerformed(ActionEvent event) {
-        if (currentLevel < 12 && running == false) {
-            running = true;
+        if (currentLevel < 12 ) {
             // resetZoom();
             currentLevel++;
             labelLevel.setText("Level: " + currentLevel);
             kochManager.changeLevel(currentLevel);
         }
+
     }
 
     private void decreaseLevelButtonActionPerformed(ActionEvent event) {
-        if (currentLevel > 1 && running == false) {
-            running = true;
+        if (currentLevel > 1) {
             // resetZoom();
             currentLevel--;
             labelLevel.setText("Level: " + currentLevel);

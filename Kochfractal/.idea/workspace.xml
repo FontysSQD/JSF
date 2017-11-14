@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="37cb8f9b-3808-433f-9689-87c15e7a6078" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ReadWrite/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ReadWrite/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../ReadWrite/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/calculate/KochFractal.java" afterPath="$PROJECT_DIR$/src/calculate/KochFractal.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/calculate/KochManager.java" afterPath="$PROJECT_DIR$/src/calculate/KochManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/calculate/ThreadManager.java" afterPath="$PROJECT_DIR$/src/calculate/ThreadManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/jsf31kochfractalfx/JSF31KochFractalFX.java" afterPath="$PROJECT_DIR$/src/jsf31kochfractalfx/JSF31KochFractalFX.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,24 +16,32 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/Kochfractal$JSF31KochFractalFX.coverage" NAME="JSF31KochFractalFX Coverage Results" MODIFIED="1510659442868" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>jsf31kochfractalfx.*</FILTER>
+    </SUITE>
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="OpdrachtWeek4 goed.iml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/OpdrachtWeek4 goed.iml">
+      <file leaf-file-name="KochFractal.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/calculate/KochFractal.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="9" lean-forward="false" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+            <state relative-caret-position="768">
+              <caret line="61" column="17" lean-forward="false" selection-start-line="61" selection-start-column="8" selection-end-line="61" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JSF31KochFractalFX.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="JSF31KochFractalFX.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/jsf31kochfractalfx/JSF31KochFractalFX.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="615">
-              <caret line="60" column="13" lean-forward="true" selection-start-line="60" selection-start-column="13" selection-end-line="60" selection-end-column="13" />
-              <folding />
+            <state relative-caret-position="242">
+              <caret line="269" column="37" lean-forward="false" selection-start-line="269" selection-start-column="37" selection-end-line="269" selection-end-column="37" />
+              <folding>
+                <element signature="e#8425#8426#0" expanded="true" />
+                <element signature="e#8480#8481#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -40,18 +49,18 @@
       <file leaf-file-name="ThreadManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/calculate/ThreadManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+            <state relative-caret-position="309">
+              <caret line="50" column="21" lean-forward="true" selection-start-line="50" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="KochManager.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="KochManager.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/calculate/KochManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="22" column="41" lean-forward="false" selection-start-line="22" selection-start-column="41" selection-end-line="22" selection-end-column="41" />
+            <state relative-caret-position="172">
+              <caret line="87" column="45" lean-forward="true" selection-start-line="87" selection-start-column="45" selection-end-line="87" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -66,6 +75,12 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>req</find>
+      <find>edges</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
@@ -78,10 +93,10 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/calculate/test.java" />
-        <option value="$PROJECT_DIR$/src/calculate/KochFractal.java" />
         <option value="$PROJECT_DIR$/src/calculate/MyCallable.java" />
-        <option value="$PROJECT_DIR$/src/calculate/ThreadManager.java" />
+        <option value="$PROJECT_DIR$/src/calculate/KochFractal.java" />
         <option value="$PROJECT_DIR$/src/jsf31kochfractalfx/JSF31KochFractalFX.java" />
+        <option value="$PROJECT_DIR$/src/calculate/ThreadManager.java" />
         <option value="$PROJECT_DIR$/src/calculate/KochManager.java" />
       </list>
     </option>
@@ -92,11 +107,10 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="625" />
-    <option name="y" value="302" />
-    <option name="width" value="926" />
-    <option name="height" value="1020" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-7" />
+    <option name="width" value="814" />
+    <option name="height" value="867" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -115,9 +129,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scratches" />
-      <pane id="Scope" />
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -142,10 +153,19 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="jsf31kochfractalfx" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Kochfractal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Kochfractal" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="timeutil" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -622,37 +642,38 @@
       <workItem from="1507022487113" duration="76000" />
       <workItem from="1507022656071" duration="133000" />
       <workItem from="1507714357982" duration="290000" />
+      <workItem from="1510648478911" duration="12079000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20131000" />
+    <option name="totallyTimeSpent" value="32210000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="625" y="302" width="926" height="1020" extended-state="0" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32831737" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32702702" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1995638" sideWeight="0.504329" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19594595" sideWeight="0.5070694" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1995638" sideWeight="0.495671" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19594595" sideWeight="0.4929306" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969153" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25974026" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.095115684" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2215973" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22027028" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -663,6 +684,38 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295838" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19594595" sideWeight="0.5070694" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924336" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2215973" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32831737" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19594595" sideWeight="0.4929306" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.095115684" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295838" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -677,21 +730,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="35" />
+      <option name="time" value="38" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/java/util/Observer.java" />
-    <entry file="file://$USER_HOME$/OpdrachtWeek3/src/runtime/CommandParser.java" />
-    <entry file="file://$USER_HOME$/OpdrachtWeek3/src/runtime/JSF31_w03_OS_Runtime.java" />
-    <entry file="file://$PROJECT_DIR$/OpdrachtWeek4 goed.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/calculate/test.java" />
     <entry file="file://$PROJECT_DIR$/src/timeutil/TimeStamp.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -720,7 +763,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="35" column="35" lean-forward="false" selection-start-line="35" selection-start-column="35" selection-end-line="35" selection-end-column="35" />
-          <folding />
+          <folding>
+            <element signature="e#8425#8426#0" expanded="true" />
+            <element signature="e#8480#8481#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -745,7 +791,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="35" column="35" lean-forward="false" selection-start-line="35" selection-start-column="35" selection-end-line="35" selection-end-column="35" />
-          <folding />
+          <folding>
+            <element signature="e#8425#8426#0" expanded="true" />
+            <element signature="e#8480#8481#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -791,7 +840,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3915">
           <caret line="261" column="23" lean-forward="false" selection-start-line="261" selection-start-column="12" selection-end-line="261" selection-end-column="23" />
-          <folding />
+          <folding>
+            <element signature="e#8425#8426#0" expanded="true" />
+            <element signature="e#8480#8481#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -829,7 +881,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3915">
           <caret line="261" column="23" lean-forward="false" selection-start-line="261" selection-start-column="12" selection-end-line="261" selection-end-column="23" />
-          <folding />
+          <folding>
+            <element signature="e#8425#8426#0" expanded="true" />
+            <element signature="e#8480#8481#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -867,7 +922,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3480">
           <caret line="232" column="9" lean-forward="false" selection-start-line="232" selection-start-column="9" selection-end-line="232" selection-end-column="9" />
-          <folding />
+          <folding>
+            <element signature="e#8425#8426#0" expanded="true" />
+            <element signature="e#8480#8481#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -938,6 +996,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/calculate/MyCallable.java" />
+    <entry file="file://$PROJECT_DIR$/OpdrachtWeek4 goed.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="9" lean-forward="false" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/java/util/concurrent/ExecutorService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="235" column="18" lean-forward="false" selection-start-line="235" selection-start-column="18" selection-end-line="235" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/javafx-src.zip!/javafx/scene/canvas/GraphicsContext.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="1189" column="16" lean-forward="false" selection-start-line="1189" selection-start-column="16" selection-end-line="1189" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/calculate/Edge.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -946,42 +1029,59 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/calculate/MyCallable.java" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/java/util/Observable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1887">
+          <caret line="172" column="32" lean-forward="false" selection-start-line="172" selection-start-column="32" selection-end-line="172" selection-end-column="32" />
+          <folding>
+            <element signature="e#5937#5938#0" expanded="false" />
+            <element signature="e#5967#5968#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/javafx-src.zip!/javafx/concurrent/Task.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="1006" column="32" lean-forward="false" selection-start-line="1006" selection-start-column="27" selection-end-line="1006" selection-end-column="32" />
+          <folding>
+            <element signature="e#41692#41693#0" expanded="false" />
+            <element signature="e#41727#41728#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/jsf31kochfractalfx/JSF31KochFractalFX.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="269" column="37" lean-forward="false" selection-start-line="269" selection-start-column="37" selection-end-line="269" selection-end-column="37" />
+          <folding>
+            <element signature="e#8425#8426#0" expanded="true" />
+            <element signature="e#8480#8481#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/calculate/KochFractal.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="54" column="16" lean-forward="false" selection-start-line="54" selection-start-column="16" selection-end-line="54" selection-end-column="16" />
+        <state relative-caret-position="768">
+          <caret line="61" column="17" lean-forward="false" selection-start-line="61" selection-start-column="8" selection-end-line="61" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/calculate/ThreadManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        <state relative-caret-position="309">
+          <caret line="50" column="21" lean-forward="true" selection-start-line="50" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/calculate/KochManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="22" column="41" lean-forward="false" selection-start-line="22" selection-start-column="41" selection-end-line="22" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/OpdrachtWeek4 goed.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="9" lean-forward="false" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/jsf31kochfractalfx/JSF31KochFractalFX.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="60" column="13" lean-forward="true" selection-start-line="60" selection-start-column="13" selection-end-line="60" selection-end-column="13" />
+        <state relative-caret-position="172">
+          <caret line="87" column="45" lean-forward="true" selection-start-line="87" selection-start-column="45" selection-end-line="87" selection-end-column="45" />
           <folding />
         </state>
       </provider>

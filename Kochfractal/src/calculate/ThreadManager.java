@@ -1,17 +1,16 @@
 package calculate;
 
-import java.lang.reflect.Array;
+import javafx.concurrent.Task;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.concurrent.Callable;
 
 /**
  * Created by quintaartsen on 26-09-17.
  */
-public class ThreadManager implements Callable<ArrayList<Edge>>, Observer {
+public abstract class ThreadManager extends Task<ArrayList<Edge>> implements  Observer{
 
-    private KochFractal kochFractal;
+    public KochFractal kochFractal;
     public ArrayList<Edge> edge = new ArrayList<>();
 
     public ThreadManager(int nxt){
@@ -32,19 +31,28 @@ public class ThreadManager implements Callable<ArrayList<Edge>>, Observer {
         }
     }
 
-    public void generateRightEdge(){
+    public void generateRightEdge() {
         synchronized (this) {
             kochFractal.generateRightEdge();
         }
     }
 
+    public int getNrOfEdges(){
+        return kochFractal.getNrOfEdges();
+    }
 
     public void update(Observable o, Object arg) {
         edge.add((Edge)arg);
+        updateProgress(edge.size(), getNrOfEdges());
+        updateMessage("Nr edges: " + edge.size());
+        try {
+            Thread.sleep(5);
+        } catch (InterruptedException e) {
+            System.out.println("Sleep stopped");
+        }
     }
-
-    @Override
-    public ArrayList<Edge> call() throws Exception {
-        return null;
+    public void cancelTask(){
+        kochFractal.cancel();
+        cancel();
     }
 }
