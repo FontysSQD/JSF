@@ -122,7 +122,10 @@ public class KochManager{
     }
 
     public void drawGeneratedEdges(ArrayList<Edge> edges) {
-        ArrayList<Edge> edgesToDraw = new ArrayList<>(edges);
+        ArrayList<Edge> edgesToDraw = new ArrayList<>(edges.size());
+        for (Edge ed: edges) {
+            edgesToDraw.add(ed.clone());
+        }
         TimeStamp ts = new TimeStamp();
         ts.setBegin();
         for (Edge e : edgesToDraw) {
