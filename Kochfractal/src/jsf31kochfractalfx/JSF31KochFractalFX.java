@@ -227,7 +227,7 @@ public class JSF31KochFractalFX extends Application {
         Edge e1 = edgeAfterZoomAndDrag(e);
 
         // Set line color
-        gc.setStroke(e1.color);
+        gc.setStroke(e.color);
 
         // Set line width depending on level
         if (currentLevel <= 3) {
@@ -262,10 +262,19 @@ public class JSF31KochFractalFX extends Application {
             }
         });
     }
+    public void requestGeneratedDrawEdges(ArrayList<Edge> edges)  {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                kochManager.drawGeneratedEdges(edges);
+            }
+        });
+}
 
     private void increaseLevelButtonActionPerformed(ActionEvent event) {
         if (currentLevel < 12 ) {
             // resetZoom();
+            clearKochPanel();
             currentLevel++;
             labelLevel.setText("Level: " + currentLevel);
             kochManager.changeLevel(currentLevel);

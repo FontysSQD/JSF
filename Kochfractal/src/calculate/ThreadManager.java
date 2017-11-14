@@ -1,6 +1,8 @@
 package calculate;
 
 import javafx.concurrent.Task;
+import jsf31kochfractalfx.JSF31KochFractalFX;
+
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -12,11 +14,13 @@ public abstract class ThreadManager extends Task<ArrayList<Edge>> implements  Ob
 
     public KochFractal kochFractal;
     public ArrayList<Edge> edge = new ArrayList<>();
+    private JSF31KochFractalFX application;
 
-    public ThreadManager(int nxt){
+    public ThreadManager(int nxt, JSF31KochFractalFX application){
         kochFractal = new KochFractal();
         kochFractal.setLevel(nxt);
         kochFractal.addObserver(this::update);
+        this.application = application;
     }
 
     public void generateLeftEdge(){
@@ -45,6 +49,9 @@ public abstract class ThreadManager extends Task<ArrayList<Edge>> implements  Ob
         edge.add((Edge)arg);
         updateProgress(edge.size(), getNrOfEdges());
         updateMessage("Nr edges: " + edge.size());
+        if(edge.size() > 3) {
+            application.requestGeneratedDrawEdges(edge);
+        }
         try {
             Thread.sleep(5);
         } catch (InterruptedException e) {

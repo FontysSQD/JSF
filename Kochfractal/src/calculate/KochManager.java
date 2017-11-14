@@ -1,7 +1,10 @@
 package calculate;
 
+import javafx.scene.paint.Color;
 import jsf31kochfractalfx.JSF31KochFractalFX;
 import timeutil.TimeStamp;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -42,7 +45,7 @@ public class KochManager{
         }
         TimeStamp ts = new TimeStamp();
         ts.setBegin();
-        left = new ThreadManager(nxt) {
+        left = new ThreadManager(nxt, this.application) {
             @Override
             public ArrayList<Edge> call() {
                 generateLeftEdge();
@@ -54,7 +57,7 @@ public class KochManager{
         application.progressLeftEdges.textProperty().bind(left.messageProperty());
 
 
-        bottom = new ThreadManager(nxt) {
+        bottom = new ThreadManager(nxt, this.application) {
             @Override
             public ArrayList<Edge> call() {
                 generateBottomEdge();
@@ -65,7 +68,7 @@ public class KochManager{
         application.progressBarBottom.progressProperty().bind(bottom.progressProperty());
         application.progressBottomEdges.textProperty().bind(bottom.messageProperty());
 
-        right = new ThreadManager(nxt) {
+        right = new ThreadManager(nxt, this.application) {
             @Override
             public ArrayList<Edge> call() {
                 generateRightEdge();
@@ -115,6 +118,18 @@ public class KochManager{
         }
         ts.setEnd("Einde tekenen");
 
+        application.setTextDraw(ts.toString());
+    }
+
+    public void drawGeneratedEdges(ArrayList<Edge> edges) {
+        ArrayList<Edge> edgesToDraw = new ArrayList<>(edges);
+        TimeStamp ts = new TimeStamp();
+        ts.setBegin();
+        for (Edge e : edgesToDraw) {
+            e.color = Color.WHITE;
+            application.drawEdge(e);
+        }
+        ts.setEnd("Einde Generatie tekenen");
         application.setTextDraw(ts.toString());
     }
 }
