@@ -26,7 +26,7 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/calculator/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
+            <state relative-caret-position="38">
               <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -70,8 +70,8 @@
       <file leaf-file-name="FileManager.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/calculator/FileManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="45" column="18" lean-forward="false" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="18" />
+            <state relative-caret-position="1050">
+              <caret line="70" column="0" lean-forward="true" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -695,12 +695,12 @@
       <workItem from="1510661007848" duration="7336000" />
       <workItem from="1510670520219" duration="38000" />
       <workItem from="1511259086499" duration="5097000" />
-      <workItem from="1511265705078" duration="2827000" />
+      <workItem from="1511265705078" duration="4164000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48894000" />
+    <option name="totallyTimeSpent" value="50231000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="27" width="1853" height="1053" extended-state="6" />
@@ -944,21 +944,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/calculator/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/calculator/KochManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/calculator/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -982,8 +982,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/calculator/FileManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="45" column="18" lean-forward="false" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="18" />
+        <state relative-caret-position="1050">
+          <caret line="70" column="0" lean-forward="true" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
