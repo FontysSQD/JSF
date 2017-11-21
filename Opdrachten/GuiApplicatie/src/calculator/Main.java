@@ -1,4 +1,4 @@
-package com.company;
+package calculator;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -7,7 +7,7 @@ import java.util.Observer;
 import java.util.Scanner;
 
 public class Main implements Observer{
-    private static final String fileName = "C:\\test\\generatorConsole.txt";
+    private static final String fileName = "C:\\test\\lvl2.ser";
     ArrayList<Edge> edges = new ArrayList<>();
 
     public static void main(String[] args) {
@@ -18,8 +18,7 @@ public class Main implements Observer{
             kochFractal.addObserver(main);
             System.out.print("Welk level moeten de edges gegenereerd worden? \n");
             Scanner input = new Scanner(System.in);
-            String lvlString = input.nextLine();
-            int level = Integer.valueOf(lvlString);
+            int level = input.nextInt();
             kochFractal.setLevel(level);
             kochFractal.generateBottomEdge();
             kochFractal.generateLeftEdge();
@@ -30,7 +29,7 @@ public class Main implements Observer{
     }
 
     public void writeToFile(){
-        try (ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(fileName)))) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName))) {
             for(Edge e : edges){
                 oos.writeObject(e);
             }
