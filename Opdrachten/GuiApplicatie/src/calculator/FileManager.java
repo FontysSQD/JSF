@@ -7,17 +7,44 @@ import java.util.ArrayList;
  * GuiApplicatie Created by Sven de Vries on 21-11-2017
  */
 public class FileManager {
-    public ArrayList<Edge> getFile(int nxt) {
-        ArrayList<Edge> edges = new ArrayList<>();
-        String fileName = "C:\\test\\lvl" + String.valueOf(nxt) + ".ser";
+
+    private ArrayList<Edge> edges ;
+    public ArrayList<Edge> getFileNoBuffer(int nxt) {
+        edges = new ArrayList<>();
+        String fileName = "/home/dane/Desktop/lv" + String.valueOf(nxt) + ".edgyboi";
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileName))) {
-            while (ois.available() != 0) {
-                Edge edge = (Edge) ois.readObject();
-                edges.add(edge);
+            while(true) {
+                Edge e = (Edge) ois.readObject();
+                if (e != null) {
+                    edges.add(e);
+                } else {
+                    break;
+                }
             }
             System.out.println("Ophalen geslaagd");
         } catch (IOException e) {
+
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
+        }
+        return edges;
+    }
+
+    public ArrayList<Edge> getFileWithBuffer(int nxt) {
+        edges = new ArrayList<>();
+        String fileName = "/home/dane/Desktop/lv" + String.valueOf(nxt) + ".edgyboi";
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileName))) {
+            while(true) {
+                Edge e = (Edge) ois.readObject();
+                if (e != null) {
+                    edges.add(e);
+                } else {
+                    break;
+                }
+            }
+            System.out.println("Ophalen geslaagd");
+        } catch (IOException e) {
+
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

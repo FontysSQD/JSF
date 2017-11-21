@@ -2,10 +2,7 @@ package calculator;
 
 import javafx.scene.paint.Color;
 
-import java.io.Externalizable;
-import java.io.IOException;
-import java.io.ObjectInput;
-import java.io.ObjectOutput;
+import java.io.*;
 
 public class Edge implements Externalizable{
     public double X1, Y1, X2, Y2;
@@ -24,10 +21,10 @@ public class Edge implements Externalizable{
 
     @Override
     public void writeExternal(ObjectOutput out) throws IOException {
-        out.write((int)X1);
-        out.write((int)Y1);
-        out.write((int)X2);
-        out.write((int)Y2);
+        out.writeDouble(X1);
+        out.writeDouble(Y1);
+        out.writeDouble(X2);
+        out.writeDouble(Y2);
     }
 
     @Override
