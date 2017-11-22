@@ -1,6 +1,5 @@
 package calculator;
 
-import com.sun.xml.internal.stream.writers.UTF8OutputStreamWriter;
 import timeutil.TimeStamp;
 
 import java.io.*;
@@ -28,17 +27,17 @@ public class Main implements Observer{
             kochFractal.generateLeftEdge();
             kochFractal.generateRightEdge();
             System.out.print("Totaal aantal edges: " + kochFractal.getNrOfEdges() + "\n");
-           // main.writeToByteWithoutBuffer();
-            //main.writeToByteWithBuffer();
-            //10main.writeToTextWithoutBuffer();
+            main.writeToByteWithoutBuffer();
+            main.writeToByteWithBuffer();
+            main.writeToTextWithoutBuffer();
             main.writeToTextWithBuffer();
         }
     }
 
     public void writeToByteWithoutBuffer(){
         ts.init();
-        ts.setBegin("Begin byte without buffer");
-        String fileName = "/home/dane/Desktop/lv" + String.valueOf(level) + ".edgyboi";
+        ts.setBegin("Begin write byte without buffer");
+        String fileName = "C:\\test\\lv" + String.valueOf(level) + ".edgyboi";
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName))) {
             for(Edge e : edges){
                 oos.writeObject(e);
@@ -48,14 +47,15 @@ public class Main implements Observer{
             e.printStackTrace();
         }
         finally {
-            ts.setEnd("End byte without buffer");
+            ts.setEnd("End");
+            System.out.println(ts.toString());
         }
     }
 
     public void writeToByteWithBuffer(){
         ts.init();
-        ts.setBegin("Begin byte without buffer");
-        String fileName = "/home/dane/Desktop/blv" + String.valueOf(level) + ".edgyboi";
+        ts.setBegin("Begin write byte with buffer");
+        String fileName = "C:\\test\\blv" + String.valueOf(level) + ".edgyboi";
         try (ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(fileName)))) {
             for(Edge e : edges){
                 oos.writeObject(e);
@@ -65,14 +65,15 @@ public class Main implements Observer{
             e.printStackTrace();
         }
         finally {
-            ts.setEnd("End byte with buffer");
+            ts.setEnd("End");
+            System.out.println(ts.toString());
         }
     }
 
     public void writeToTextWithoutBuffer(){
         ts.init();
-        ts.setBegin("Begin text without buffer");
-        String fileName = "/home/dane/Desktop/lv" + String.valueOf(level) + ".edgystringboi";
+        ts.setBegin("Begin write text without buffer");
+        String fileName = "C:\\test\\lv" + String.valueOf(level) + ".edgystringyboi";
         try (PrintWriter writer = new PrintWriter(new OutputStreamWriter(new FileOutputStream(fileName), "utf-8"))) {
             for(Edge e : edges){
                 writer.print(e.X1 + "," + e.Y1 + "," + e.X2 + "," + e.Y2 + ";");
@@ -82,14 +83,15 @@ public class Main implements Observer{
             e.printStackTrace();
         }
         finally {
-            ts.setEnd("End text without buffer");
+            ts.setEnd("End");
+            System.out.println(ts.toString());
         }
     }
 
     public void writeToTextWithBuffer(){
         ts.init();
-        ts.setBegin("Begin text without buffer");
-        String fileName = "/home/dane/Desktop/blv" + String.valueOf(level) + ".edgystringyboi";
+        ts.setBegin("Begin write text with buffer");
+        String fileName = "C:\\test\\blv" + String.valueOf(level) + ".edgystringyboi";
         try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName), "utf-8"))) {
             for(Edge e : edges){
                 writer.append(e.X1 + "," + e.Y1 + "," + e.X2 + "," + e.Y2 + ";");
@@ -99,7 +101,8 @@ public class Main implements Observer{
             e.printStackTrace();
         }
         finally {
-            ts.setEnd("End text with buffer");
+            ts.setEnd("End");
+            System.out.println(ts.toString());
         }
     }
 
