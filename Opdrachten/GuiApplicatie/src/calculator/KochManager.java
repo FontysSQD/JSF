@@ -17,7 +17,7 @@ public class KochManager {
     }
 
     public void changeLevel(int nxt) {
-        edges = fileManager.getFile(nxt);
+        edges = fileManager.getStringWithBuffer(nxt);
         drawEdges();
     }
 

@@ -28,9 +28,9 @@ public class Main implements Observer{
             kochFractal.generateLeftEdge();
             kochFractal.generateRightEdge();
             System.out.print("Totaal aantal edges: " + kochFractal.getNrOfEdges() + "\n");
-            main.writeToByteWithoutBuffer();
-            main.writeToByteWithBuffer();
-            main.writeToTextWithoutBuffer();
+           // main.writeToByteWithoutBuffer();
+            //main.writeToByteWithBuffer();
+            //10main.writeToTextWithoutBuffer();
             main.writeToTextWithBuffer();
         }
     }
@@ -89,7 +89,7 @@ public class Main implements Observer{
     public void writeToTextWithBuffer(){
         ts.init();
         ts.setBegin("Begin text without buffer");
-        String fileName = "/home/dane/Desktop/blv" + String.valueOf(level) + ".edgystringboi";
+        String fileName = "/home/dane/Desktop/blv" + String.valueOf(level) + ".edgystringyboi";
         try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName), "utf-8"))) {
             for(Edge e : edges){
                 writer.append(e.X1 + "," + e.Y1 + "," + e.X2 + "," + e.Y2 + ";");
