@@ -33,8 +33,7 @@ public class FileManager {
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             ts.setEnd("End");
             System.out.println(ts.toString());
         }
@@ -60,8 +59,7 @@ public class FileManager {
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             ts.setEnd("End");
             System.out.println(ts.toString());
         }
@@ -74,14 +72,13 @@ public class FileManager {
         ts.setBegin("Begin read string with buffer");
         edges = new ArrayList<>();
         String fileName = "C:\\test\\blv" + String.valueOf(nxt) + ".edgystringyboi";
-        try (InputStreamReader isr = new InputStreamReader(new BufferedInputStream(new FileInputStream(fileName)))) {
-            parseStringFiles(String.valueOf(isr.read()));
+        try (DataInputStream dis = new DataInputStream(new BufferedInputStream(new FileInputStream(fileName)))) {
+            parseStringFiles(dis.readLine());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             ts.setEnd("End");
             System.out.println(ts.toString());
         }
@@ -93,14 +90,13 @@ public class FileManager {
         ts.setBegin("Begin read string without buffer");
         edges = new ArrayList<>();
         String fileName = "C:\\test\\lv" + String.valueOf(nxt) + ".edgystringyboi";
-        try (InputStreamReader isr = new InputStreamReader(new FileInputStream(fileName))) {
-           parseStringFiles(String.valueOf(isr.read()));
+        try (DataInputStream dis = new DataInputStream(new BufferedInputStream(new FileInputStream(fileName)))) {
+            parseStringFiles(dis.readLine());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             ts.setEnd("End");
             System.out.println(ts.toString());
         }
@@ -108,10 +104,10 @@ public class FileManager {
     }
 
     private void parseStringFiles(String zooj) {
-        String[] objects =  zooj.split(";");
-        for(String object : objects) {
+        String[] objects = zooj.split(";");
+        for (String object : objects) {
             String[] fields = object.split(",");
-            edges.add(new Edge(Double.parseDouble(fields[0]), Double.parseDouble(fields[0]), Double.parseDouble(fields[0]), Double.parseDouble(fields[0]), Color.CHOCOLATE));
+            edges.add(new Edge(Double.parseDouble(fields[0]), Double.parseDouble(fields[1]), Double.parseDouble(fields[2]), Double.parseDouble(fields[3]), Color.CHOCOLATE));
         }
     }
 }
