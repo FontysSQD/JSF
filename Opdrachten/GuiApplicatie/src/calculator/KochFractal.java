@@ -1,23 +1,13 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-package calculate;
+package calculator;
 
-import java.util.ArrayList;
 import java.util.Observable;
 import javafx.scene.paint.Color;
 
-/**
- *
- * @author Peter Boots
- */
 public class KochFractal extends Observable {
-
     private int level = 1;      // The current level of the fractal
     private int nrOfEdges = 3;  // The number of edges in the current level of the fractal
     private float hue;          // Hue value of color for next edge
-    private boolean cancelled;  // Flag to indicate that calculation has been cancelled
+    private boolean cancelled;  // Flag to indicate that calculation has been cancelled 
 
     private void drawKochEdge(double ax, double ay, double bx, double by, int n) {
         if (!cancelled) {
@@ -65,7 +55,7 @@ public class KochFractal extends Observable {
 
     public void setLevel(int lvl) {
         level = lvl;
-        nrOfEdges = (int) (Math.pow(4, level - 1));
+        nrOfEdges = (int) (3 * Math.pow(4, level - 1));
     }
 
     public int getLevel() {

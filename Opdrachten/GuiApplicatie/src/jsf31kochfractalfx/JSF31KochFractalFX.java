@@ -4,10 +4,9 @@
  */
 package jsf31kochfractalfx;
 
-import calculate.*;
+import calculator.*;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -22,9 +21,6 @@ import javafx.scene.input.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
-import java.util.ArrayList;
-import java.util.Optional;
 
 /**
  * @author Nico Kuijpers
@@ -41,7 +37,7 @@ public class JSF31KochFractalFX extends Application {
     private double lastDragY = 0.0;
 
     // Koch manager
-    // TO DO: Create class KochManager in package calculate
+    // TO DO: Create class KochManager in package calculator
     private KochManager kochManager;
     public ObservableList<Edge> edges;
 
