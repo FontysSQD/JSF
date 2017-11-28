@@ -12,8 +12,10 @@ import java.util.ArrayList;
 public class KochManager {
     private JSF31KochFractalFX application;
     private FileManager fileManager;
-    private ArrayList<Edge> edges = new ArrayList<>();
+//    private ArrayList<Edge> edges = new ArrayList<>();
     TimeStamp ts = new TimeStamp();
+    FileChannel fc;
+    MappedByteBuffer buffer;
 
     public KochManager(JSF31KochFractalFX application) {
         this.application = application;
@@ -26,27 +28,25 @@ public class KochManager {
 //        edges = fileManager.getStringWithBuffer(nxt);
 //        edges = fileManager.getObjectWithBuffer(nxt);
 
-        edges.clear();
         try {
             ts.init();
             ts.setBegin("Begin read mappedByteBuffer without buffer");
             RandomAccessFile ras = new RandomAccessFile(String.valueOf(nxt) + ".dat", "rw");
-            FileChannel fc = ras.getChannel();
-            MappedByteBuffer buffer = fc.map(FileChannel.MapMode.READ_ONLY, 0, fc.size());
-            byte[] bytes = new byte[buffer.limit()];
+            fc = ras.getChannel();
+            buffer = fc.map(FileChannel.MapMode.READ_ONLY, 0, fc.size());
 
-            for (int i = 0; i < buffer.limit(); i++) {
-                bytes[i] = buffer.get(i);
-            }
-
-            ByteArrayInputStream in = new ByteArrayInputStream(bytes);
-            ObjectInputStream is = new ObjectInputStream(in);
-            edges.addAll((ArrayList<Edge>) is.readObject());
+//           for (int i = 0; i < buffer.limit() / (Double.BYTES * 4); i++) {
+//                Edge e = new Edge();
+//                e.X1 = buffer.getDouble();
+//                e.Y1 = buffer.getDouble();
+//                e.X2 = buffer.getDouble();
+//                e.Y2 = buffer.getDouble();
+//                e.color = Color.RED;
+//                edges.add(e);
+//            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
             ts.setEnd("End");
@@ -56,15 +56,37 @@ public class KochManager {
         drawEdges();
     }
 
+    public long edgeCount() {
+        try {
+            return fc.size() / (Double.BYTES * 4);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
     public void drawEdges() {
-        if (!edges.isEmpty()) {
+        if (edgeCount() != 0) {
             application.clearKochPanel();
 
             TimeStamp ts = new TimeStamp();
             ts.setBegin();
-            for (Edge e : edges) {
+
+            long count = edgeCount();
+            buffer.position(0);
+            for (long i = 0; i < count; i++) {
+                Edge e = new Edge();
+                e.X1 = buffer.getDouble();
+                e.Y1 = buffer.getDouble();
+                e.X2 = buffer.getDouble();
+                e.Y2 = buffer.getDouble();
+                e.color = Color.RED;
                 application.drawEdge(e);
             }
+
+//              for (Edge e : edges) {
+//                  application.drawEdge(e);
+//              }
             ts.setEnd("Einde tekenen");
 
             application.setTextDraw(ts.toString());

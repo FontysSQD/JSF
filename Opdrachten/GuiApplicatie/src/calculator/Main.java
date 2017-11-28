@@ -36,16 +36,16 @@ public class Main implements Observer {
             try {
                 main.ts.init();
                 main.ts.setBegin("Begin write byte without buffer");
-                ByteArrayOutputStream out = new ByteArrayOutputStream();
-                ObjectOutputStream os = new ObjectOutputStream(out);
-                os.writeObject(main.edges);
-
                 RandomAccessFile ras = new RandomAccessFile(String.valueOf(level) + ".dat", "rw");
                 FileChannel fc = ras.getChannel();
-                MappedByteBuffer buffer = fc.map(FileChannel.MapMode.READ_WRITE, 0, out.toByteArray().length);
+                MappedByteBuffer buffer = fc.map(FileChannel.MapMode.READ_WRITE, 0, main.edges.size() * (Double.BYTES * 4));
 
-                for (Byte b : out.toByteArray()) {
-                    buffer.put(b);
+                for(Edge e : main.edges)
+                {
+                    buffer.putDouble(e.X1);
+                    buffer.putDouble(e.Y1);
+                    buffer.putDouble(e.X2);
+                    buffer.putDouble(e.Y2);
                 }
                 System.out.println("Finished writing");
             } catch (FileNotFoundException e) {
