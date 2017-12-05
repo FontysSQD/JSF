@@ -5,6 +5,7 @@
 package jsf31kochfractalfx;
 
 import calculator.*;
+import com.sun.nio.file.SensitivityWatchEventModifier;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
@@ -21,6 +22,15 @@ import javafx.scene.input.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.nio.channels.FileLock;
+import java.nio.file.*;
+
+import static java.lang.Thread.sleep;
+import static java.nio.file.StandardWatchEventKinds.ENTRY_CREATE;
+import static java.nio.file.StandardWatchEventKinds.ENTRY_DELETE;
+import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
 
 /**
  * @author Nico Kuijpers
@@ -206,6 +216,10 @@ public class JSF31KochFractalFX extends Application {
         primaryStage.setTitle("Koch Fractal");
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        clearKochPanel();
+        Thread t = new Thread(() -> checkChanges());
+        t.start();
     }
 
     public void clearKochPanel() {
@@ -337,6 +351,39 @@ public class JSF31KochFractalFX extends Application {
                 e.X2 * zoom + zoomTranslateX,
                 e.Y2 * zoom + zoomTranslateY,
                 e.color);
+    }
+
+    private void checkChanges(){
+        Path dir = Paths.get("/home/dane/git_projects/JSF/Opdrachten/GuiApplicatie");
+        WatchKey key;
+
+        try {
+            WatchService watcher = FileSystems.getDefault().newWatchService();
+            dir.register(watcher, new WatchEvent.Kind[]{ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY}, SensitivityWatchEventModifier.HIGH);
+
+            while (true) {
+                key = watcher.take();
+                for (WatchEvent<?> event : key.pollEvents()) {
+                    WatchEvent<Path> ev = (WatchEvent<Path>) event;
+
+                    Path filename = ev.context();
+                    WatchEvent.Kind kind = ev.kind();
+                    if (kind == ENTRY_CREATE || kind == ENTRY_MODIFY && filename.endsWith("edges.dat")) {
+                        Platform.runLater(() -> {
+                            try {
+                                kochManager.drawEdgeFromMap();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        });
+                    }
+                }
+                key.reset();
+            }
+
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

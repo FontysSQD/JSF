@@ -3,12 +3,20 @@ package calculator;
 import timeutil.TimeStamp;
 
 import java.io.*;
+import java.lang.instrument.Instrumentation;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
+import java.nio.channels.FileLock;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Scanner;
+
+import static java.lang.Thread.sleep;
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 public class Main implements Observer {
     private static int level;
@@ -21,13 +29,14 @@ public class Main implements Observer {
             main.edges.clear();
             KochFractal kochFractal = new KochFractal();
             kochFractal.addObserver(main);
+            new File("edges.dat").delete();
             System.out.print("Welk level moeten de edges gegenereerd worden? \n");
             Scanner input = new Scanner(System.in);
             level = input.nextInt();
             kochFractal.setLevel(level);
             kochFractal.generateBottomEdge();
-            kochFractal.generateLeftEdge();
             kochFractal.generateRightEdge();
+            kochFractal.generateLeftEdge();
             System.out.print("Totaal aantal edges: " + kochFractal.getNrOfEdges() + "\n");
 //            main.writeToByteWithoutBuffer();
 //            main.writeToByteWithBuffer();
@@ -36,21 +45,31 @@ public class Main implements Observer {
             try {
                 main.ts.init();
                 main.ts.setBegin("Begin write byte without buffer");
-                RandomAccessFile ras = new RandomAccessFile(String.valueOf(level) + ".dat", "rw");
+                RandomAccessFile ras = new RandomAccessFile("edges.dat", "rw");
                 FileChannel fc = ras.getChannel();
-                MappedByteBuffer buffer = fc.map(FileChannel.MapMode.READ_WRITE, 0, main.edges.size() * (Double.BYTES * 4));
+                MappedByteBuffer buffer = fc.map(FileChannel.MapMode.READ_WRITE, 1, main.edges.size() * (Double.BYTES * 4));
 
-                for(Edge e : main.edges)
-                {
+                FileLock lock;
+
+
+                for (Edge e : main.edges) {
+                    lock = fc.lock(0, 58, false);
                     buffer.putDouble(e.X1);
                     buffer.putDouble(e.Y1);
                     buffer.putDouble(e.X2);
                     buffer.putDouble(e.Y2);
+                    lock.release();
+                    ras.seek(0);
+                    ras.write(0);
+                    sleep(10);
                 }
+
                 System.out.println("Finished writing");
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             } finally {
                 main.ts.setEnd("End");
@@ -59,73 +78,6 @@ public class Main implements Observer {
         }
     }
 
-    public void writeToByteWithoutBuffer() {
-        ts.init();
-        ts.setBegin("Begin write byte without buffer");
-        String fileName = "C:\\test\\lv" + String.valueOf(level) + ".edgyboi";
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName))) {
-            for (Edge e : edges) {
-                oos.writeObject(e);
-            }
-            System.out.println("Wegschrijven byte zonder buffer geslaagd");
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            ts.setEnd("End");
-            System.out.println(ts.toString());
-        }
-    }
-
-    public void writeToByteWithBuffer() {
-        ts.init();
-        ts.setBegin("Begin write byte with buffer");
-        String fileName = "C:\\test\\blv" + String.valueOf(level) + ".edgyboi";
-        try (ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(fileName)))) {
-            for (Edge e : edges) {
-                oos.writeObject(e);
-            }
-            System.out.println("Wegschrijven byte met buffer geslaagd");
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            ts.setEnd("End");
-            System.out.println(ts.toString());
-        }
-    }
-
-    public void writeToTextWithoutBuffer() {
-        ts.init();
-        ts.setBegin("Begin write text without buffer");
-        String fileName = "C:\\test\\lv" + String.valueOf(level) + ".edgystringyboi";
-        try (PrintWriter writer = new PrintWriter(new OutputStreamWriter(new FileOutputStream(fileName), "utf-8"))) {
-            for (Edge e : edges) {
-                writer.print(e.X1 + "," + e.Y1 + "," + e.X2 + "," + e.Y2 + ";");
-            }
-            System.out.println("Wegschrijven text zonder buffer geslaagd");
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            ts.setEnd("End");
-            System.out.println(ts.toString());
-        }
-    }
-
-    public void writeToTextWithBuffer() {
-        ts.init();
-        ts.setBegin("Begin write text with buffer");
-        String fileName = "C:\\test\\blv" + String.valueOf(level) + ".edgystringyboi";
-        try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName), "utf-8"))) {
-            for (Edge e : edges) {
-                writer.append(e.X1 + "," + e.Y1 + "," + e.X2 + "," + e.Y2 + ";");
-            }
-            System.out.println("Wegschrijven text met buffer geslaagd");
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            ts.setEnd("End");
-            System.out.println(ts.toString());
-        }
-    }
 
     @Override
     public void update(Observable o, Object arg) {
