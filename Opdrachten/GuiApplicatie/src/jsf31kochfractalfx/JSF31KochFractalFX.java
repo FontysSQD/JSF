@@ -22,11 +22,20 @@ import javafx.scene.input.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import timeutil.TimeStamp;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.nio.Buffer;
+import java.nio.MappedByteBuffer;
+import java.nio.channels.FileChannel;
 import java.nio.channels.FileLock;
 import java.nio.file.*;
+import java.util.ArrayList;
+import java.util.List;
 
+import static java.lang.Thread.currentThread;
 import static java.lang.Thread.sleep;
 import static java.nio.file.StandardWatchEventKinds.ENTRY_CREATE;
 import static java.nio.file.StandardWatchEventKinds.ENTRY_DELETE;
@@ -49,7 +58,8 @@ public class JSF31KochFractalFX extends Application {
     // Koch manager
     // TO DO: Create class KochManager in package calculator
     private KochManager kochManager;
-    public ObservableList<Edge> edges;
+    TimeStamp ts = new TimeStamp();
+
 
     // Current level of Koch fractal
     private int currentLevel = 1;
@@ -165,7 +175,8 @@ public class JSF31KochFractalFX extends Application {
         progressRightEdges = new Label();
         grid.add(progressRight, 0, 9);
         grid.add(progressRightEdges, 6, 9);
-
+TimeStamp ts = new TimeStamp();
+    FileChannel fc;
         // Progress bars to present progress
         progressBarLeft = new ProgressBar();
         grid.add(progressBarLeft, 5, 7);
@@ -218,7 +229,13 @@ public class JSF31KochFractalFX extends Application {
         primaryStage.show();
 
         clearKochPanel();
-        Thread t = new Thread(() -> checkChanges());
+        Thread t = new Thread(() -> {
+            try {
+                checkChanges();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
         t.start();
     }
 
@@ -272,17 +289,18 @@ public class JSF31KochFractalFX extends Application {
             }
         });
     }
-    public void requestGeneratedDrawEdge(Edge edge)  {
+
+    public void requestGeneratedDrawEdge(Edge edge) {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
                 kochManager.drawGeneratedEdges(edge);
             }
         });
-}
+    }
 
     private void increaseLevelButtonActionPerformed(ActionEvent event) {
-        if (currentLevel < 12 ) {
+        if (currentLevel < 12) {
             // resetZoom();
             clearKochPanel();
             currentLevel++;
@@ -353,36 +371,38 @@ public class JSF31KochFractalFX extends Application {
                 e.color);
     }
 
-    private void checkChanges(){
-        Path dir = Paths.get("/home/dane/git_projects/JSF/Opdrachten/GuiApplicatie");
-        WatchKey key;
+    private void checkChanges() throws IOException {
+        final int interval = 1000;
 
-        try {
-            WatchService watcher = FileSystems.getDefault().newWatchService();
-            dir.register(watcher, new WatchEvent.Kind[]{ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY}, SensitivityWatchEventModifier.HIGH);
+        ts.init();
+        ts.setBegin("Begin read mappedByteBuffer without buffer");
 
-            while (true) {
-                key = watcher.take();
-                for (WatchEvent<?> event : key.pollEvents()) {
-                    WatchEvent<Path> ev = (WatchEvent<Path>) event;
+        RandomAccessFile ras = new RandomAccessFile("edges.dat", "rw");
+        FileChannel fc = ras.getChannel();
+        MappedByteBuffer buffer = fc.map(FileChannel.MapMode.READ_WRITE, 1,  (Double.BYTES * 4));
 
-                    Path filename = ev.context();
-                    WatchEvent.Kind kind = ev.kind();
-                    if (kind == ENTRY_CREATE || kind == ENTRY_MODIFY && filename.endsWith("edges.dat")) {
-                        Platform.runLater(() -> {
-                            try {
-                                kochManager.drawEdgeFromMap();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        });
+        FileLock lock = fc.lock(0, 58, false);
+
+        while (true) {
+            Platform.runLater(() -> {
+                try {
+                    long count = edgeCount();
+                    buffer.position(0);
+                    for (long i = 0; i < count; i++) {
+                        Edge e = new Edge();
+                        e.X1 = buffer.getDouble();
+                        e.Y1 = buffer.getDouble();
+                        e.X2 = buffer.getDouble();
+                        e.Y2 = buffer.getDouble();
+                        e.color = Color.RED;
+                        this.drawEdge(e);
                     }
-                }
-                key.reset();
-            }
+                    lock.release();
+                } catch(Exception e) {
 
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
+                }
+            });
+            Thread.sleep(interval);
         }
     }
 

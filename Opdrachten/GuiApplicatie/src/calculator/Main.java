@@ -45,7 +45,7 @@ public class Main implements Observer {
             try {
                 main.ts.init();
                 main.ts.setBegin("Begin write byte without buffer");
-                RandomAccessFile ras = new RandomAccessFile("edges.dat", "rw");
+                RandomAccessFile ras = new RandomAccessFile("edges.dat", "rw");main
                 FileChannel fc = ras.getChannel();
                 MappedByteBuffer buffer = fc.map(FileChannel.MapMode.READ_WRITE, 1, main.edges.size() * (Double.BYTES * 4));
 
