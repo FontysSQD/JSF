@@ -254,7 +254,8 @@ public class JSF31KochFractalFX extends Application {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                kochManager.drawEdges();
+                //Client doesnt need to know kochmanager
+                kochManager.drawEdges(); //Call method on TCPClient?
             }
         });
     }

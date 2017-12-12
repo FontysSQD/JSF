@@ -2,10 +2,7 @@ package jsf31kochfractalfx;
 
 import calculator.Edge;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.Socket;
 
 /**
@@ -13,13 +10,16 @@ import java.net.Socket;
  */
 public class TCPClient {
     private static final int portNumber = 1234;
-    DataOutputStream outToServer;
-    BufferedReader inFromServer;
+    ObjectOutputStream outToServer;
+    ObjectInputStream inFromServer;
 
     public TCPClient(){
         try (Socket clientSocket = new Socket("localhost", portNumber)){
-            outToServer = new DataOutputStream(clientSocket.getOutputStream());
-            inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            OutputStream outStream = clientSocket.getOutputStream();
+            InputStream inStream = clientSocket.getInputStream();
+
+            outToServer = new ObjectOutputStream(outStream);
+            inFromServer = new ObjectInputStream(inStream);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -35,9 +35,10 @@ public class TCPClient {
 
     public Edge getEdge(){
         try {
-            inFromServer.rea;
-        } catch (IOException e) {
+            return (Edge) inFromServer.readObject();
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+        return null;
     }
 }
