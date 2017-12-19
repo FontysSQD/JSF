@@ -14,23 +14,26 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class KochManager {
-    private static final ExecutorService pool = Executors.newFixedThreadPool(2);
+    private Thread thread;
     private JSF31KochFractalFX application;
     private ObjectStreamClient tcpClient;
-//    private ArrayList<Edge> edges = new ArrayList<>();
-    TimeStamp ts = new TimeStamp();
-    FileChannel fc;
-    MappedByteBuffer buffer;
+    private int currentLevel;
+    private TimeStamp ts = new TimeStamp();
+    private FileChannel fc;
+    private MappedByteBuffer buffer;
+
+    public int getCurrentLevel() {
+        return currentLevel;
+    }
 
     public KochManager(JSF31KochFractalFX application) {
         this.application = application;
+        thread = new Thread(new ObjectStreamClient(this));
     }
 
     public void changeLevel(int nxt) {
-        pool.submit(() -> {
-            tcpClient = new ObjectStreamClient(this);
-            tcpClient.sendLevel(nxt);
-        });
+        this.currentLevel = nxt;
+        thread.run();
     }
 
     public long edgeCount() {
@@ -62,9 +65,6 @@ public class KochManager {
                 application.drawEdge(e);
             }
 
-//              for (Edge e : edges) {
-//                  application.drawEdge(e);
-//              }
             ts.setEnd("Einde tekenen");
 
             application.setTextDraw(ts.toString());

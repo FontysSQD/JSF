@@ -25,47 +25,52 @@ public class ObjectStreamServer implements Runnable {
 
     @Override
     public void run() {
-        try {
-            // establish server socket
-            ServerSocket s = new ServerSocket(8189);
-
-            // wait for client connection
-            Socket incoming = s.accept();
-            System.out.println("Connected");
+        while (true) {
             try {
-                OutputStream outStream = incoming.getOutputStream();
-                InputStream inStream = incoming.getInputStream();
+                // establish server socket
+                ServerSocket s = new ServerSocket(8189);
 
-                in = new ObjectInputStream(inStream);
-                out = new ObjectOutputStream(outStream);
+                // wait for client connection
+                System.out.println("Waiting for client");
+                Socket incoming = s.accept();
+                System.out.println("Connected");
+                try {
+                    OutputStream outStream = incoming.getOutputStream();
+                    InputStream inStream = incoming.getInputStream();
 
-                // echo client Object input
-                boolean done = false;
-                Object inObject = null;
-                while (!done) {
-                    try {
-                        inObject = in.readObject();
+                    in = new ObjectInputStream(inStream);
+                    out = new ObjectOutputStream(outStream);
+
+                    // echo client Object input
+                    Object inObject = in.readObject();
+                    while (inObject != null) {
                         if (inObject instanceof Integer) {
                             int level = (int) inObject;
                             main.generateEdges(level);
+                            out.writeObject("Done");
+                            inObject = in.readObject();
+                        } else if (inObject instanceof String) {
+                            if (inObject.equals("Done")) {
+                                inObject = null;
+                            }
                         }
-                    } catch (ClassNotFoundException e) {
-                        // TODO Auto-generated catch block
-                        System.out.println("Object type not known");
                     }
-                    //
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                } finally {
+                    incoming.close();
                 }
-            } finally {
-                incoming.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
     public void sendEdge(Edge edge) {
         try {
             out.writeObject(edge);
+            out.flush();
+            System.out.println("Edge send");
         } catch (IOException e) {
             e.printStackTrace();
         }

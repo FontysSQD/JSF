@@ -23,19 +23,17 @@ public class Main implements Observer {
     private static int level;
     private KochFractal kochFractal;
     private ObjectStreamServer objectStreamServer;
-    ArrayList<Edge> edges = new ArrayList<>();
     TimeStamp ts = new TimeStamp();
 
     public static void main(String[] args) {
         Main main = new Main();
-        main.kochFractal = new KochFractal();
+        main.kochFractal = new KochFractal(main);
         main.startTCPServer();
     }
 
     private void startTCPServer(){
         objectStreamServer = new ObjectStreamServer(this);
         Thread thread = new Thread(objectStreamServer);
-//        thread.start();
         objectStreamServer.run();
     }
 
@@ -49,7 +47,6 @@ public class Main implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        edges.add((Edge) arg);
         objectStreamServer.sendEdge((Edge)arg);
     }
 }

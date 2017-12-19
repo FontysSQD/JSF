@@ -1,6 +1,7 @@
 package TCP;/*
  * run in cmd in bin directory: java clientserver/TCP.ObjectStreamClient
  */
+
 import calculator.Edge;
 import calculator.KochManager;
 
@@ -13,66 +14,53 @@ import java.net.Socket;
 
 public class ObjectStreamClient implements Runnable {
 
-	private ObjectOutputStream out;
-	private KochManager kochManager;
+    private ObjectOutputStream out;
+    private KochManager kochManager;
 
-	public ObjectStreamClient(KochManager kochManager){
-		this.kochManager = kochManager;
-	}
+    public ObjectStreamClient(KochManager kochManager) {
+        this.kochManager = kochManager;
+    }
 
-	@Override
-	public void run() {
+    @Override
+    public void run() {
+        sendLevel(kochManager.getCurrentLevel());
+    }
 
-	}
+    public void sendLevel(int level) {
+        try {
+            Socket s = new Socket("localhost", 8189);
+            try {
+                System.out.println("Connected to server");
+                OutputStream outStream = s.getOutputStream();
+                InputStream inStream = s.getInputStream();
 
-	public void sendLevel(int level){
+                // Let op: volgorde is van belang!
+                out = new ObjectOutputStream(outStream);
+                ObjectInputStream in = new ObjectInputStream(inStream);
 
-		try
-		{
-			Socket s = new Socket("localhost", 8189);
-			try
-			{
-				OutputStream outStream = s.getOutputStream();
-				InputStream inStream = s.getInputStream();
-
-				// Let op: volgorde is van belang!
-				out = new ObjectOutputStream(outStream);
-				ObjectInputStream in = new ObjectInputStream(inStream);
-				//
-				// Simulatie clientsessie
-
-				try {
-					out.writeObject(level);
-					out.flush();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				Object result;
-				while((result = in.readObject()) != null){
-					if(result instanceof String) {
-						if (result.equals("Disconnect") || result.equals("finnished")) {
-							break;
-						}
-					}else if(result instanceof Edge){
-						kochManager.drawGeneratedEdges((Edge)result);
-					}
-				}
-				// close
-				out.writeObject("Disconnect");
-				out.flush();
-
-			}
-			finally
-			{
-				s.close();
-			}
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-		catch (ClassNotFoundException nfe){
-			nfe.printStackTrace();
-		}
-	}
+                try {
+                    out.writeObject(level);
+                    out.flush();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Object result = in.readObject();
+                while (result != null) {
+                    if (result instanceof Edge) {
+                        kochManager.drawGeneratedEdges((Edge) result);
+                        result = in.readObject();
+                    } else if (result instanceof String){
+                        if (result.equals("Done")){
+                            out.writeObject("Done");
+                            result = null;
+                        }
+                    }
+                }
+            } finally {
+                s.close();
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 }

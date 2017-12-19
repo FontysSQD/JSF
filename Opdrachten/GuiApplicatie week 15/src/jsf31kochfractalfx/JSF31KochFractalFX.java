@@ -5,7 +5,6 @@
 package jsf31kochfractalfx;
 
 import calculator.*;
-import com.sun.nio.file.SensitivityWatchEventModifier;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
@@ -22,15 +21,6 @@ import javafx.scene.input.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
-import java.io.IOException;
-import java.nio.channels.FileLock;
-import java.nio.file.*;
-
-import static java.lang.Thread.sleep;
-import static java.nio.file.StandardWatchEventKinds.ENTRY_CREATE;
-import static java.nio.file.StandardWatchEventKinds.ENTRY_DELETE;
-import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
 
 /**
  * @author Nico Kuijpers
@@ -49,7 +39,6 @@ public class JSF31KochFractalFX extends Application {
     // Koch manager
     // TO DO: Create class KochManager in package calculator
     private KochManager kochManager;
-    public ObservableList<Edge> edges;
 
     // Current level of Koch fractal
     private int currentLevel = 1;
@@ -248,6 +237,7 @@ public class JSF31KochFractalFX extends Application {
 
         // Draw line
         gc.strokeLine(e1.X1, e1.Y1, e1.X2, e1.Y2);
+        System.out.println("Edge drawn");
     }
 
     public void setTextNrEdges(String text) {
