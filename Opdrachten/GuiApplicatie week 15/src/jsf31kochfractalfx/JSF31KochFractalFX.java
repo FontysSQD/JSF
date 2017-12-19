@@ -193,6 +193,7 @@ public class JSF31KochFractalFX extends Application {
 
         // Create Koch manager and set initial level
         resetZoom();
+        clearKochPanel();
         kochManager = new KochManager(this);
         kochManager.changeLevel(currentLevel);
 
@@ -205,8 +206,6 @@ public class JSF31KochFractalFX extends Application {
         primaryStage.setTitle("Koch Fractal");
         primaryStage.setScene(scene);
         primaryStage.show();
-
-        clearKochPanel();
     }
 
     public void clearKochPanel() {
@@ -252,26 +251,8 @@ public class JSF31KochFractalFX extends Application {
         labelDrawText.setText(text);
     }
 
-    public void requestDrawEdges() {
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                kochManager.drawEdges();
-            }
-        });
-    }
-    public void requestGeneratedDrawEdge(Edge edge)  {
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                kochManager.drawGeneratedEdges(edge);
-            }
-        });
-}
-
     private void increaseLevelButtonActionPerformed(ActionEvent event) {
-        if (currentLevel < 12 ) {
-            // resetZoom();
+        if (currentLevel < 12) {
             clearKochPanel();
             currentLevel++;
             labelLevel.setText("Level: " + currentLevel);
@@ -282,7 +263,7 @@ public class JSF31KochFractalFX extends Application {
 
     private void decreaseLevelButtonActionPerformed(ActionEvent event) {
         if (currentLevel > 1) {
-            // resetZoom();
+            clearKochPanel();
             currentLevel--;
             labelLevel.setText("Level: " + currentLevel);
             kochManager.changeLevel(currentLevel);
@@ -291,7 +272,8 @@ public class JSF31KochFractalFX extends Application {
 
     private void fitFractalButtonActionPerformed(ActionEvent event) {
         resetZoom();
-        kochManager.drawEdges();
+        clearKochPanel();
+        kochManager.changeLevel(currentLevel);
     }
 
     private void kochPanelMouseClicked(MouseEvent event) {
@@ -306,7 +288,8 @@ public class JSF31KochFractalFX extends Application {
             }
             zoomTranslateX = (int) (event.getX() - originalPointClickedX * zoom);
             zoomTranslateY = (int) (event.getY() - originalPointClickedY * zoom);
-            kochManager.drawEdges();
+            clearKochPanel();
+            kochManager.changeLevel(currentLevel);
         }
     }
 
@@ -315,7 +298,8 @@ public class JSF31KochFractalFX extends Application {
         zoomTranslateY = zoomTranslateY + event.getY() - lastDragY;
         lastDragX = event.getX();
         lastDragY = event.getY();
-        kochManager.drawEdges();
+        clearKochPanel();
+        kochManager.changeLevel(currentLevel);
     }
 
     private void kochPanelMousePressed(MouseEvent event) {
@@ -340,7 +324,6 @@ public class JSF31KochFractalFX extends Application {
                 e.Y2 * zoom + zoomTranslateY,
                 e.color);
     }
-
 
     /**
      * The main() method is ignored in correctly deployed JavaFX application.

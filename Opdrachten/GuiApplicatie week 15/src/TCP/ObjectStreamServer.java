@@ -14,7 +14,6 @@ import java.net.Socket;
 
 
 public class ObjectStreamServer implements Runnable {
-
     private ObjectInputStream in;
     private ObjectOutputStream out;
     private Main main;
@@ -59,7 +58,9 @@ public class ObjectStreamServer implements Runnable {
                     e.printStackTrace();
                 } finally {
                     incoming.close();
+                    s.close();
                 }
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -74,5 +75,17 @@ public class ObjectStreamServer implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private Edge edgeAfterZoomAndDrag(Edge e) {
+        double zoomTranslateX = 0.0;
+        double zoomTranslateY = 0.0;
+        double zoom = 1.0;
+        return new Edge(
+                e.X1 * zoom + zoomTranslateX,
+                e.Y1 * zoom + zoomTranslateY,
+                e.X2 * zoom + zoomTranslateX,
+                e.Y2 * zoom + zoomTranslateY,
+                e.color);
     }
 }

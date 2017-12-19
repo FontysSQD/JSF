@@ -15,15 +15,16 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Scanner;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import static java.lang.Thread.sleep;
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 public class Main implements Observer {
-    private static int level;
     private KochFractal kochFractal;
     private ObjectStreamServer objectStreamServer;
-    TimeStamp ts = new TimeStamp();
+    private ExecutorService pool = Executors.newFixedThreadPool(4);
 
     public static void main(String[] args) {
         Main main = new Main();
@@ -33,8 +34,7 @@ public class Main implements Observer {
 
     private void startTCPServer(){
         objectStreamServer = new ObjectStreamServer(this);
-        Thread thread = new Thread(objectStreamServer);
-        objectStreamServer.run();
+        pool.submit(objectStreamServer);
     }
 
     public void generateEdges(int level){
