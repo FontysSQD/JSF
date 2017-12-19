@@ -5,6 +5,7 @@
 package jsf31kochfractalfx;
 
 import calculator.*;
+import com.sun.nio.file.SensitivityWatchEventModifier;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
@@ -22,6 +23,15 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.nio.channels.FileLock;
+import java.nio.file.*;
+
+import static java.lang.Thread.sleep;
+import static java.nio.file.StandardWatchEventKinds.ENTRY_CREATE;
+import static java.nio.file.StandardWatchEventKinds.ENTRY_DELETE;
+import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
+
 /**
  * @author Nico Kuijpers
  */
@@ -36,8 +46,10 @@ public class JSF31KochFractalFX extends Application {
     private double lastDragX = 0.0;
     private double lastDragY = 0.0;
 
-    //TCPClient
-    private TCPClient tcpClient;
+    // Koch manager
+    // TO DO: Create class KochManager in package calculator
+    private KochManager kochManager;
+    public ObservableList<Edge> edges;
 
     // Current level of Koch fractal
     private int currentLevel = 1;
@@ -190,10 +202,10 @@ public class JSF31KochFractalFX extends Application {
             }
         });
 
-        // Create TCP and set initial level
+        // Create Koch manager and set initial level
         resetZoom();
-        tcpClient = new TCPClient();
-        tcpClient.sendLevel(currentLevel);
+        kochManager = new KochManager(this);
+        kochManager.changeLevel(currentLevel);
 
         // Create the scene and add the grid pane
         Group root = new Group();
@@ -254,8 +266,7 @@ public class JSF31KochFractalFX extends Application {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                //Client doesnt need to know kochmanager
-                kochManager.drawEdges(); //Call method on TCPClient?
+                kochManager.drawEdges();
             }
         });
     }
@@ -274,8 +285,7 @@ public class JSF31KochFractalFX extends Application {
             clearKochPanel();
             currentLevel++;
             labelLevel.setText("Level: " + currentLevel);
-            //Send to server
-            tcpClient.sendLevel(currentLevel);
+            kochManager.changeLevel(currentLevel);
         }
 
     }
@@ -285,7 +295,7 @@ public class JSF31KochFractalFX extends Application {
             // resetZoom();
             currentLevel--;
             labelLevel.setText("Level: " + currentLevel);
-            tcpClient.sendLevel(currentLevel);
+            kochManager.changeLevel(currentLevel);
         }
     }
 
@@ -340,6 +350,7 @@ public class JSF31KochFractalFX extends Application {
                 e.Y2 * zoom + zoomTranslateY,
                 e.color);
     }
+
 
     /**
      * The main() method is ignored in correctly deployed JavaFX application.
