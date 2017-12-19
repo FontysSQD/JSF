@@ -41,12 +41,27 @@ public class KochManager {
         this.buffer = mb;
         this.fc = fileChannel;
         application.clearKochPanel();
-
         ts.init();
         ts.setBegin("Begin read mappedByteBuffer without buffer");
-
-        long count = edgeCount();
         buffer.position(0);
+        renderEdgeFromBuffer();
+    }
+
+
+    public void drawEdges() {
+        if (edgeCount() != 0) {
+            TimeStamp ts = new TimeStamp();
+            ts.setBegin();
+            application.clearKochPanel();
+            buffer.position(0);
+            renderEdgeFromBuffer();
+            ts.setEnd("Einde tekenen");
+            application.setTextDraw(ts.toString());
+        }
+    }
+
+    private void renderEdgeFromBuffer() {
+        long count = edgeCount();
         for (long i = 0; i < count; i++) {
             Edge e = new Edge();
             e.X1 = buffer.getDouble();
@@ -55,35 +70,6 @@ public class KochManager {
             e.Y2 = buffer.getDouble();
             e.color = Color.RED;
             application.drawEdge(e);
-        }
-    }
-
-
-    public void drawEdges() {
-        if (edgeCount() != 0) {
-            application.clearKochPanel();
-
-            TimeStamp ts = new TimeStamp();
-            ts.setBegin();
-
-            long count = edgeCount();
-            buffer.position(0);
-            for (long i = 0; i < count; i++) {
-                Edge e = new Edge();
-                e.X1 = buffer.getDouble();
-                e.Y1 = buffer.getDouble();
-                e.X2 = buffer.getDouble();
-                e.Y2 = buffer.getDouble();
-                e.color = Color.RED;
-                application.drawEdge(e);
-            }
-
-//              for (Edge e : edges) {
-//                  application.drawEdge(e);
-//              }
-            ts.setEnd("Einde tekenen");
-
-            application.setTextDraw(ts.toString());
         }
     }
 

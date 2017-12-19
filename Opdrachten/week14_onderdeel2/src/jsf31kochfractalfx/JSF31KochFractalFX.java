@@ -222,6 +222,19 @@ public class JSF31KochFractalFX extends Application {
         primaryStage.show();
 
         clearKochPanel();
+        Thread t = new Thread(() -> {
+            try {
+                while(true) {
+                    checkChanges();
+                    sleep(5);
+                }
+            } catch (IOException e) {
+                System.out.println("Bestand niet gevonden");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        t.start();
     }
 
     public void clearKochPanel() {
@@ -290,15 +303,6 @@ public class JSF31KochFractalFX extends Application {
             clearKochPanel();
             currentLevel++;
             labelLevel.setText("Level: " + currentLevel);
-
-            Thread t = new Thread(() -> {
-                try {
-                    checkChanges();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
-            t.start();
         }
 
     }
@@ -364,20 +368,30 @@ public class JSF31KochFractalFX extends Application {
                 e.color);
     }
 
+    private int newLevel;
+    private int oldLevel;
+
     private void checkChanges() throws IOException {
         RandomAccessFile ras = new RandomAccessFile("/home/dane/Desktop/edges.dat", "rw");
-        FileChannel fc = ras.getChannel();
-        MappedByteBuffer buffer = fc.map(FileChannel.MapMode.READ_WRITE, 1, fc.size() -1);
-        FileLock lock = fc.lock(0, 58, false);
-        Platform.runLater(() -> {
-            try {
-                kochManager.drawEdgeFromMap(buffer, fc);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-        lock.release();
-        System.out.println("looped");
+        ras.seek(0);
+        newLevel = ras.read();
+        if (newLevel != oldLevel) {
+            FileChannel fc = ras.getChannel();
+            MappedByteBuffer buffer = fc.map(FileChannel.MapMode.READ_WRITE, 1, fc.size() - 1);
+            FileLock lock = fc.lock(0, 58, false);
+            ras.seek(0);
+            newLevel = ras.read();
+            Platform.runLater(() -> {
+                try {
+                    kochManager.drawEdgeFromMap(buffer, fc);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+            oldLevel = newLevel;
+            lock.release();
+        }
+
     }
 
     /**

@@ -59,7 +59,7 @@ public class Main implements Observer {
                     buffer.putDouble(e.Y2);
                     lock.release();
                     ras.seek(0);
-                    ras.write(0);
+                    ras.write(level);
                     sleep(10);
                 }
 
